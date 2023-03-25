@@ -14,3 +14,4 @@ jee\master\servletcontroller\LogOutServlet.class
 jee\master\model\entity\ItemCarro.class
 jee\master\servletcontroller\VerCarroServlet.class
 jee\master\model\entity\Producto.class
+jee\master\servletcontroller\ActualizarCarroServlet.class

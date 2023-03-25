@@ -17,6 +17,8 @@ Carro carro = (Carro)session.getAttribute("carro");
     <p>Lo sentimos, no hay productos en el carro.</p>
 
   <% }else { %>
+
+  <form action="/httpsessions/carro/actualizar" method="post">
     <table>
         <tr>
             <th>id</th>
@@ -42,6 +44,8 @@ Carro carro = (Carro)session.getAttribute("carro");
             <td><%= carro.getTotal() %></td>
         </tr>
     </table>
+
+    </form>
   <% } %>
     <p><a href="<%= request.getContextPath()%>/productos.html">seguir comprando</a></p>
     <p><a href="<%= request.getContextPath()%>/index.html">volver</a></p>

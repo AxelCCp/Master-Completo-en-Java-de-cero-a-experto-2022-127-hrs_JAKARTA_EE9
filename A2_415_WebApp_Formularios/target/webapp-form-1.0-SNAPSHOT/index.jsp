@@ -120,7 +120,7 @@ List<String>errores = (List<String>)request.getAttribute("errores");
         <label>Administrador</label>
       </div>
       <div>
-        <input type="checkbox" name="roles" value="ROLE_USER" checked ${paramValues.roles.stream().anyMatch(v -> v.equals("ROLE_USER")).get() ? "checked" : ""}>
+        <input type="checkbox" name="roles" value="ROLE_USER" ${paramValues.roles.stream().anyMatch(v -> v.equals("ROLE_USER")).get() ? "checked" : ""}>
         <label>Usuario</label>
       </div>
       <div>

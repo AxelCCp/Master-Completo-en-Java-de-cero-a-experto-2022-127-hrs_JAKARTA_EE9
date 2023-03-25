@@ -1,0 +1,32 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario login</title>
+</head>
+<body>
+  <h1>Inicar sesión</h1>
+  <form action="/httpsessions/login" method="post">
+
+    <div>
+      <label for="username">username</label>
+      <div>
+        <input type="text" name="username" id="username">
+      </div>
+    </div>
+
+    <div>
+      <label for="password">password</label>
+      <div>
+        <input type="text" name="password" id="password">
+      </div>
+    </div>
+
+    <div>
+      <input type="submit" value="login">
+    </div>
+
+  </form>
+</body>
+</html>
