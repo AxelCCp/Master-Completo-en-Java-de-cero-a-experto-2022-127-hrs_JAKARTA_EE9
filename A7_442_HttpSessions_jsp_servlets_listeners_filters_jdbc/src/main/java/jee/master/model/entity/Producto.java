@@ -1,5 +1,7 @@
 package jee.master.model.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Producto {
@@ -10,7 +12,9 @@ public class Producto {
     public Producto(Long id, String nombre, String tipo, Integer precio) {
         this.id = id;
         this.nombre = nombre;
-        this.tipo = tipo;
+        Categoria categoria = new Categoria();
+        categoria.setNombre(tipo);
+        this.categoria = categoria;
         this.precio = precio;
     }
 
@@ -30,12 +34,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public Integer getPrecio() {
@@ -46,12 +50,29 @@ public class Producto {
         this.precio = precio;
     }
 
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
     private Long id;
     private String nombre;
-    private String tipo;
-    private Integer precio;
-    private Date fechaRegistro;
     private Categoria categoria;
+    private Integer precio;
+    private String sku;
+    private LocalDate fechaRegistro;
+
 }
 
 

@@ -1,5 +1,6 @@
 package jee.master.model.repository;
 
+import jee.master.model.entity.Categoria;
 import jee.master.model.entity.Producto;
 
 import java.sql.*;
@@ -20,7 +21,7 @@ public class ProductoRepositoryImpl implements IRepository<Producto>{
     public List<Producto> listar() throws SQLException {
         List<Producto>productos = new ArrayList<>();
         try(Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select p.*, c.nombre as categoria from productos as p inner join categorias as c on (p.categoria_id = c.id)")){
+            ResultSet rs = st.executeQuery("select p.*, c.nombre as categoria from productos as p inner join categorias as c on (p.categoria_id = c.id) order by p.id asc")){
             while(rs.next()){
                 Producto producto = getProducto(rs);
                 productos.add(producto);
@@ -46,11 +47,34 @@ public class ProductoRepositoryImpl implements IRepository<Producto>{
 
     @Override
     public void guardar(Producto producto) throws SQLException {
+        String sql;
+        if(producto.getId() != null && producto.getId() > 0){
+            sql = "update productos set nombre=?, precio=?, sku=?, categoria_id=? where id=?";
+        }else{
+            sql = "insert into productos (nombre, precio, sku, categoria_id, fecha_registro) values (?,?,?,?,?)";
+        }
+        try(PreparedStatement st = conn.prepareStatement(sql)){
+            st.setString(1, producto.getNombre());
+            st.setInt(2, producto.getPrecio());
+            st.setString(3, producto.getSku());
+            st.setLong(4, producto.getCategoria().getId());
 
+            if(producto.getId() != null && producto.getId() > 0){
+                st.setLong(5, producto.getId());
+            }else{
+                st.setDate(5, Date.valueOf(producto.getFechaRegistro()));
+            }
+            st.executeUpdate();
+        }
     }
 
     @Override
     public void eliminar(Long id) throws SQLException {
+        String sql = "delete from productos where id=?";
+        try(PreparedStatement st = conn.prepareStatement(sql)){
+            st.setLong(1, id);
+            st.executeUpdate();
+        }
 
     }
 
@@ -59,7 +83,12 @@ public class ProductoRepositoryImpl implements IRepository<Producto>{
         producto.setId(rs.getLong("id"));
         producto.setNombre(rs.getString("nombre"));
         producto.setPrecio(rs.getInt("precio"));
-        producto.setTipo(rs.getString("categoria"));
+        producto.setSku(rs.getString("sku"));
+        producto.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
+        Categoria c = new Categoria();
+        c.setId(rs.getLong("categoria_id"));
+        c.setNombre(rs.getString("categoria"));
+        producto.setCategoria(c);
         return producto;
     }
 

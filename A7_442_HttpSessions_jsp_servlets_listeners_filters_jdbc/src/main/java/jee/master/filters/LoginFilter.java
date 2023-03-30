@@ -20,7 +20,7 @@ import java.util.Optional;
 //5 : LO QUE SE VA A HACER ES QUE LAS RUTAS INDICADAS SEAN PRIVADAS.
 //6 : SI EL USERNAME ESTÁ PRESENTE, SE CONTINUA CON LA REQUEST, PARA ESTO ES EL CHAIN, QUE UNE LA REQUEST CON EL RESPONSE.
 //7 : SI NO ESTÁ PRESENTE, SE MANNDA UN ERROR.
-@WebFilter({"/carro/*"})                    //4
+@WebFilter({"/carro/*", "/productos/form/*", "/productos/eliminar/*"})                    //4
 public class LoginFilter implements Filter {
 
     @Override

@@ -1,5 +1,6 @@
 package jee.master.model.service;
 
+import jee.master.model.entity.Categoria;
 import jee.master.model.entity.Producto;
 
 import java.util.Arrays;
@@ -19,6 +20,28 @@ public class ProductoServiceImpl implements IProductoService{
 
     @Override
     public Optional<Producto> porid(Long id) {
-        return listar().stream().filter(p -> p.getId().equals(id)).findAny();
+        return listar().stream()
+                .filter(p -> p.getId().equals(id))
+                .findAny();
+    }
+
+    @Override
+    public void guardar(Producto producto) {
+
+    }
+
+    @Override
+    public void eliminar(Long id) {
+
+    }
+
+    @Override
+    public List<Categoria> listarcategoria() {
+        return null;
+    }
+
+    @Override
+    public Optional<Categoria> porIdCategoria(Long id) {
+        return Optional.empty();
     }
 }
