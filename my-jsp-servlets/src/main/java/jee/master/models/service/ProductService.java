@@ -2,6 +2,7 @@ package jee.master.models.service;
 
 import jee.master.models.dao.IGenericRepository;
 import jee.master.models.dao.ProductRepository;
+import jee.master.models.entity.Division;
 import jee.master.models.entity.Product;
 
 import java.sql.Connection;

@@ -13,15 +13,21 @@ List<Product>products = (List<Product>)request.getAttribute("products");
 <body>
   <h1>Product list</h1>
 
+  <p><a href="<%=request.getContextPath()%>/products/form-servlet">+ Create a new registry</a></p>
+
   <table>
       <tr>
-          <th>id</th>
-          <th>sku</th>
-          <th>name</th>
-          <th>comments</th>
-          <th>division</th>
-          <th>releaseDate</th>
-          <th>puchaseDate</th>
+          <th>Id</th>
+          <th>Sku</th>
+          <th>Name</th>
+          <th>Comments</th>
+          <th>Division</th>
+          <th>Release date</th>
+          <th>Purchase date</th>
+          <th>Price</th>
+          <th>add to cart</th>
+          <th>Update</th>
+          <th>Delete</th>
       </tr>
       <% for(Product p : products){%>
       <tr>
@@ -32,6 +38,10 @@ List<Product>products = (List<Product>)request.getAttribute("products");
           <td><%=p.getDivision().getName()%></td>
           <td><%=p.getReleaseDate()%></td>
           <td><%=p.getPuchaseDate()%></td>
+          <td><%=p.getPrice()%></td>
+          <td><a href="<%=request.getContextPath()%>/products/add-cart-servlet?id=<%=p.getId()%>">add to cart</a></td>
+          <td><a href="<%=request.getContextPath()%>/products/form-servlet?id=<%=p.getId()%>">Update</a></td>
+          <td><a onclick="return confirm('Are you sure you want to delete?')" href="<%=request.getContextPath()%>/products/delete-servlet?id=<%=p.getId()%>">Delete</a></td>
       </tr>
       <%}%>
   </table>

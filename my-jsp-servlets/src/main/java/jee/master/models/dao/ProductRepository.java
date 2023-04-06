@@ -44,15 +44,32 @@ public class ProductRepository implements IGenericRepository <Product> {
     public void save(Product product) throws SQLException {
         String sql;
         if(product.getId() != null && product.getId() > 0){
-            sql = "update products set name=?, precio=?, sku=?, categoria_id=? where id=?";
+            sql = "update products set sku=?, name=?, comments=?, division_id=?, release_date=?, puchase_date=?, price=? where id=?";
         } else {
-            sql = "insert into productos (nombre, precio, sku, categoria_id, fecha_registro) values (?,?,?,?,?)";
+            sql = "insert into products (sku, name, comments, division_id, release_date, puchase_date, price) values (?,?,?,?,?,?,?)";
+        }
+        try(PreparedStatement st = connection.prepareStatement(sql)){
+            if(product.getId() != null && product.getId() > 0){
+                st.setLong(8, product.getId());
+            }
+            st.setString(1, product.getSku());
+            st.setString(2, product.getName());
+            st.setString(3, product.getComments());
+            st.setLong(4, product.getDivision().getId());
+            st.setDate(5, Date.valueOf(product.getReleaseDate()));
+            st.setDate(6, Date.valueOf(product.getPuchaseDate()));
+            st.setDouble(7, product.getPrice());
+            st.executeUpdate();
         }
     }
 
     @Override
     public void deleteById(Long id) throws SQLException {
-
+        String sql = "delete from products where id=?";
+        try(PreparedStatement pst = connection.prepareStatement(sql)){
+            pst.setLong(1, id);
+            pst.executeUpdate();
+        }
     }
 
     private static Product getProduct(ResultSet resultSet) throws  SQLException {
@@ -61,15 +78,13 @@ public class ProductRepository implements IGenericRepository <Product> {
         product.setSku(resultSet.getString("sku"));
         product.setName(resultSet.getString("name"));
         product.setComments(resultSet.getString("comments"));
-
         Division division = new Division();
         division.setId(resultSet.getLong("division_id"));
         division.setName(resultSet.getString("division"));
         product.setDivision(division);
-
         product.setReleaseDate(resultSet.getDate("release_date").toLocalDate());
         product.setPuchaseDate(resultSet.getDate("puchase_date").toLocalDate());
-
+        product.setPrice(resultSet.getInt("price"));
         return  product;
     }
 

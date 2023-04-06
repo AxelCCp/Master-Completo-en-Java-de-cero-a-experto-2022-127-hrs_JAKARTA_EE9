@@ -63,6 +63,14 @@ public class Product {
         this.puchaseDate = puchaseDate;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     private Long id;
     private String sku;
     private String name;
@@ -70,5 +78,6 @@ public class Product {
     private Division division;
     private LocalDate releaseDate;
     private LocalDate puchaseDate;
+    private Integer price;
 
 }

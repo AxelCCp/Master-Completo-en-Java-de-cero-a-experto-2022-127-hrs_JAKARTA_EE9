@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
-@WebServlet("/products-servlet")
+@WebServlet("/products/list-servlet")
 public class ProductServlet extends HttpServlet {
 
     @Override
