@@ -3,11 +3,15 @@ package jee.master.servletcontroller;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import jee.master.model.entity.Usuario;
 import jee.master.model.service.ILoginService;
+import jee.master.model.service.IUsuarioService;
 import jee.master.model.service.LoginServiceSessionImpl;
+import jee.master.model.service.UsuarioServiceImpl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -43,25 +47,25 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    //EN ESTE MÉTODO SE OBTIENEN LOS DATOS  PASSWORD Y USERNAME QUE VIENEN DESDE UN FORMULARIO
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if(USERNAME.equals(username) && PASSWORD.equals(password)){
+        IUsuarioService usuarioService = new UsuarioServiceImpl((Connection) req.getAttribute("conn"));
+        Optional<Usuario>optionalUsuario = usuarioService.login(username, password);
 
+        if(optionalUsuario.isPresent()){
             HttpSession session = req.getSession();                                                                                     //SE CREA EL OBJ SESSION
             session.setAttribute("username",username);                                                                                  //SE ESTABLECE El ATRIBUTO USERNAME.
             resp.sendRedirect(req.getContextPath() + "/login.html");
 
         }else{
-            //resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED , "No está autorizado para ingresar a esta página");
         }
     }
 
-    final static String USERNAME = "admin";
-    final static String PASSWORD = "12345";
 }

@@ -63,14 +63,11 @@ ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("shoppingCart");
 </form>
 <% } %>
 
-<a href="javascript:document.cartForm.submit();">Update</a>
-
-    <div>
-        <input type="submit" value="Update">
-    </div>
+<p><a href="javascript:document.cartForm.submit();">Update</a></p>
 
 <p><a href="<%=request.getContextPath()%>/products/list-servlet">Go to the products list</a></p>
 
 <p><a href="<%= request.getContextPath()%>/index.html">Return home</a></p>
+
 </body>
 </html>
