@@ -16,6 +16,7 @@ jee\master\filters\ConnectionFilter.class
 jee\master\listener\Listener1.class
 jee\master\models\entity\Product.class
 jee\master\controller\UpdateCartServlet.class
+jee\master\filters\LoginFilter.class
 jee\master\models\connection\DataBaseAccess.class
 jee\master\models\service\IProductService.class
 jee\master\models\dao\DivisionRepository.class

@@ -147,7 +147,7 @@ public class ProductFormServlet extends HttpServlet {
 
         if(errors.isEmpty()) {
             productService.saveProduct(product);
-            resp.sendRedirect(req.getContextPath() + "/products-servlet");
+            resp.sendRedirect(req.getContextPath() + "/products/list-servlet");
         }else {
             req.setAttribute("errors", errors);
             req.setAttribute("divisionsList", divisionService.divisionsList());

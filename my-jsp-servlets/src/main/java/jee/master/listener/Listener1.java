@@ -14,7 +14,7 @@ public class Listener1 implements ServletContextListener, ServletRequestListener
     public void contextInitialized(ServletContextEvent sce) {
         sce.getServletContext().log("Initializing the application...");
         servletContext = sce.getServletContext();    //6
-        servletContext.setAttribute("message", "This application is developed with Jakarta EE9.");
+        servletContext.setAttribute("message", "axelccp / Developed with Java 17 and Jakarta EE9.");
     }
 
     @Override
@@ -30,6 +30,7 @@ public class Listener1 implements ServletContextListener, ServletRequestListener
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         sre.getServletContext().log("Initializing the application... Starting Request...");
+        sre.getServletRequest().setAttribute("message", " / Empowered with jsp - servlets - http session - filters - listeners - jstl - crud with mySql - jdbc auth - mvc - bootstrap.");
     }
 
     @Override

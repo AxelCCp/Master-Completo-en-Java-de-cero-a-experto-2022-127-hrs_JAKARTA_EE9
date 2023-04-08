@@ -35,13 +35,15 @@ public class LoginServlet extends HttpServlet {
                 out.print("<head>");
                 out.print("<meta charset=\"UTF-8\">");
                 out.print("<title>Hello! " + optionalUsername.get() + "</title>");
+                out.print("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD\" crossorigin=\"anonymous\">");
                 out.print("</head>");
-                out.print("<body>");
-                out.print("<h1>Hi " + optionalUsername.get() + ", you have logged in successfully!</h1>");
+                out.print("<body style=\"background-color:#95A5A6;\">");
+                out.println("<br><br>");
+                out.print("<div style=\"margin-left: 100px; margin-right: 100px; color:#D7DBDD;\"><h3>Hi " + optionalUsername.get() + ", you have logged in successfully!</h3></div>");
                 out.println("<br>");
-                out.println("<p><a href='" + req.getContextPath() + "/index.html'>Return home</a></p>");
+                out.println("<div style=\"margin-left: 100px; margin-right: 100px\"><h3><a class=\"link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover\" href='" + req.getContextPath() + "/index.html'>Home</a></h3></div>");
                 out.println("<br>");
-                out.println("<p><a href='" + req.getContextPath() + "/users/logout-servlet'>Logout</a></p>");
+                out.println("<div style=\"margin-left: 100px; margin-right: 100px\"><h3><a class=\"link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover\" href='" + req.getContextPath() + "/users/logout-servlet'>Logout</a></h3></div>");
                 out.print("</body>");
                 out.print("</html>");
             }
