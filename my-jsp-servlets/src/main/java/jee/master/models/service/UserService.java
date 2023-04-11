@@ -6,6 +6,7 @@ import jee.master.models.entity.User;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public class UserService implements IUserService{
@@ -31,6 +32,16 @@ public class UserService implements IUserService{
             throw new ExceptionJdbcService(e.getMessage(), e.getCause());
         }
     }
+
+    @Override
+    public List<User> userList() {
+        try {
+            return userRepository.list();
+        } catch (SQLException e) {
+            throw new ExceptionJdbcService(e.getMessage(),e.getCause());
+        }
+    }
+
 
     private IUserRepository userRepository;
 }

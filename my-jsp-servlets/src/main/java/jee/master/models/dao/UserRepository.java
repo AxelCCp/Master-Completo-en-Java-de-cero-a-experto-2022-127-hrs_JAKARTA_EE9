@@ -2,10 +2,8 @@ package jee.master.models.dao;
 
 import jee.master.models.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository implements IUserRepository{
@@ -15,13 +13,35 @@ public class UserRepository implements IUserRepository{
     }
 
     @Override
-    public List list() throws SQLException {
-        return null;
+    public List<User> list() throws SQLException {
+        List<User>users = new ArrayList<>();
+        try(Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("select * from users")){
+            while(rs.next()) {
+                User user = new User();
+                user.setId(rs.getLong("id"));
+                user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
+                users.add(user);
+            }
+        }
+        return users;
     }
 
     @Override
-    public Object getById(Long id) throws SQLException {
-        return null;
+    public User getById(Long id) throws SQLException {
+        User user = new User();
+        try(PreparedStatement pst = connection.prepareStatement("select * from users where id=?")){
+            pst.setLong(1, id);
+            try(ResultSet rs = pst.executeQuery()){
+                if(rs.next()){
+                    user.setId(rs.getLong("id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setEmail(rs.getString("email"));
+                }
+            }
+        }
+        return user;
     }
 
     @Override

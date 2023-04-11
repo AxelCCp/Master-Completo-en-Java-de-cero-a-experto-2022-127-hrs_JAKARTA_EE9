@@ -13,6 +13,7 @@ jee\master\models\service\ILoginService.class
 jee\master\Main.class
 jee\master\controller\DeleteProductServlet.class
 jee\master\filters\ConnectionFilter.class
+jee\master\controller\UserListServlet.class
 jee\master\listener\Listener1.class
 jee\master\models\entity\Product.class
 jee\master\controller\UpdateCartServlet.class

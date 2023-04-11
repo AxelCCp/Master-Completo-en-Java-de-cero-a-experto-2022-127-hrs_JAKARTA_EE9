@@ -52,6 +52,10 @@ footer {
                <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/products/cart-review-servlet">Cart review</a>
              </li>
 
+             <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/users/list-servlet">List of users</a>
+             </li>
+
           </ul>
 
           <%if(!username.isPresent()){%>
@@ -130,7 +134,6 @@ footer {
 
 <footer class = "footer">
   <p style="color:#F7F9F9;"><%= messageApplication %> <%= messageRequest %></p>
-
 </footer>
 
 </body>
