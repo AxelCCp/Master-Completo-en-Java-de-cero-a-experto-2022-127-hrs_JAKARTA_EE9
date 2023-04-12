@@ -1,0 +1,91 @@
+<%@page contentType="UTF-8" import="java.util.*, jee.master.models.entity.*"%>
+
+<%
+Map<String,String>errors = (Map<String, String>) request.getAttribute("errors");
+User user = (User)request.getAttribute("user");
+String messageRequest = (String) request.getAttribute("message");
+String messageApplication = (String) getServletContext().getAttribute("message");
+%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<style type="text/css">
+footer {
+  background-color: #2E4053;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+}
+</style>
+
+<body style="background-color:#95A5A6;">
+
+<div style="margin-left: 300px; margin-right: 300px">
+
+    <br><br>
+
+    <h3 style="color:#D7DBDD;">User form</h3>
+
+    <br>
+
+    <h5><a href="<%=request.getContextPath()%>/users/list-servlet" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Return</a></h5>
+
+    <form action="#" method="post">
+
+        <div>
+            <label for="username">Username</label>
+            <div style="width:50%">
+                <input class="form-control" type="text" name="username" id="username" value="<%=user.getUsername() != null ? user.getUsername() : "" %>">
+            </div>
+
+            <% if(errors != null && errors.containsKey("username")) { %>
+            <div style="color:red;"><%= errors.get("username") %></div>
+            <%}%>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <div style="width:50%">
+                <input class="form-control" type="text" name="email" id="email" value="<%=user.getEmail() != null ? user.getEmail() : "" %>">
+            </div>
+
+            <% if(errors != null && errors.containsKey("email")) { %>
+            <div style="color:red;"><%= errors.get("email") %></div>
+            <%}%>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <div style="width:50%">
+                <input class="form-control" type="text" name="password" id="password" value="<%=user.getPassword() != null ? user.getPassword() : "" %>">
+            </div>
+
+            <% if(errors != null && errors.containsKey("password")) { %>
+            <div style="color:red;"><%= errors.get("password") %></div>
+            <%}%>
+        </div>
+
+        <br>
+
+        <div style="width:15%">
+            <input class="form-control p-2 mb-1 bg-primary text-light" type="submit" value="<%= (user.getId() != null && user.getId() > 0) ? "Update" : "Create" %>">
+        </div>
+        <input type="hidden" name="id" value="<%= user.getId() %>" >
+    </form>
+
+</div>
+
+<footer class = "footer">
+    <p style="color:#F7F9F9;"><%= messageApplication %> <%= messageRequest %></p>
+</footer>
+
+</body>
+</html>

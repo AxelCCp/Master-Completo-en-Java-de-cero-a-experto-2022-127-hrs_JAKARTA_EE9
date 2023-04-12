@@ -76,7 +76,7 @@ footer {
      <%if(username.isPresent()){%>
       <br><br>
       <div style="margin-left: 20px;">
-      <h5><a href="#" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Create a new user</a></h5>
+      <h5><a href="<%=request.getContextPath()%>/users/form-servlet" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Create a new user</a></h5>
       </div>
       <%}%>
       <br><br>
@@ -109,8 +109,8 @@ footer {
                 <td><%=u.getUsername()%></td>
                 <td><%=u.getEmail()%></td>
                 <%if(username.isPresent()){%>
-                <td><a href="#" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">update</a></td>
-                <td><a href="#" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">delete</a></td>
+                <td><a href="<%=request.getContextPath()%>/users/form-servlet?id=<%=u.getId()%>" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">update</a></td>
+                <td><a href="<%=request.getContextPath()%>/users/delete-servlet?id=<%=u.getId()%>" onclick="return confirm('Are you sure you want to delete?')" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">delete</a></td>
                 <%}%>
             </tr>
         <%}%>
