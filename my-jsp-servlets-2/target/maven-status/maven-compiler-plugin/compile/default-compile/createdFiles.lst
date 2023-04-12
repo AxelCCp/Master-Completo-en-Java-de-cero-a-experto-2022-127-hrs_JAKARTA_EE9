@@ -10,6 +10,7 @@ jee\master\models\entity\Item.class
 jee\master\controller\ProductFormServlet.class
 jee\master\controller\AddCartServlet.class
 jee\master\models\dao\UserRepository.class
+jee\master\models\connection\DataBaseAccessWithPool.class
 jee\master\controller\ProductServlet.class
 jee\master\models\service\ILoginService.class
 jee\master\Main.class
