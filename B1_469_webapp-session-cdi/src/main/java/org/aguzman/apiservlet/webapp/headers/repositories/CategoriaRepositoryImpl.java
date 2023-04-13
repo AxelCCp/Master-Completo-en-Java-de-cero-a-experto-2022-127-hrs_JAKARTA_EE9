@@ -3,19 +3,21 @@ package org.aguzman.apiservlet.webapp.headers.repositories;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.aguzman.apiservlet.webapp.headers.configs.MySqlConnPrincipal;
+import org.aguzman.apiservlet.webapp.headers.configs.Repositorio;
 import org.aguzman.apiservlet.webapp.headers.models.Categoria;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+@Repositorio //@ApplicationScoped
 public class CategoriaRepositoryImpl implements Repository<Categoria>{
 
     private Connection conn;
 
     @Inject
-    public CategoriaRepositoryImpl(@Named("conn") Connection conn) {
+    public CategoriaRepositoryImpl(/*@Named("conn")*/ @MySqlConnPrincipal Connection conn) {
         this.conn = conn;
     }
 
@@ -28,7 +30,6 @@ public class CategoriaRepositoryImpl implements Repository<Categoria>{
                 Categoria categoria = getCategoria(rs);
                 categorias.add(categoria);
             }
-
         }
         return categorias;
     }

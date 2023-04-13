@@ -1,24 +1,41 @@
 package org.aguzman.apiservlet.webapp.headers.repositories;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.aguzman.apiservlet.webapp.headers.configs.MySqlConnPrincipal;
+import org.aguzman.apiservlet.webapp.headers.configs.Repositorio;
 import org.aguzman.apiservlet.webapp.headers.models.Categoria;
 import org.aguzman.apiservlet.webapp.headers.models.Producto;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 //1 - PARA QUE SEA COMPARTIDO POR TODOS LOS CLIENTES Y TODA LA APLICACIÓN,  UNA SOLA INSTANCIA
 
-@ApplicationScoped //1
+@Repositorio         //@ApplicationScoped //1
 public class ProductoRepositoryJdbcImpl implements Repository<Producto> {
 
     @Inject
-    @Named("conn")
+    @MySqlConnPrincipal         //@Named("conn")
     private Connection conn;
 
+    @Inject
+    private Logger log;
+
+    @PostConstruct
+    public void inicializar(){
+        log.info("Inicializando el bean " + this.getClass().getName());
+    }
+
+    @PreDestroy
+    public void destruir(){
+        log.info("Destruyendo el bean " + this.getClass().getName());
+    }
 
     @Override
     public List<Producto> listar() throws SQLException {

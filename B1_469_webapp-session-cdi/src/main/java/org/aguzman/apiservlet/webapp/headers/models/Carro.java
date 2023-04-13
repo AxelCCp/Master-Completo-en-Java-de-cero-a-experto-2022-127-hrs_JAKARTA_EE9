@@ -1,22 +1,38 @@
 package org.aguzman.apiservlet.webapp.headers.models;
 
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.inject.Named;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.inject.Inject;
+import org.aguzman.apiservlet.webapp.headers.configs.CarroCompras;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 
-@SessionScoped
-@Named("carro")
+//@SessionScoped
+//@Named("carro")
+@CarroCompras
 public class Carro implements Serializable {
 
     private List<ItemCarro> items;
 
-    public Carro() {
-        this.items = new ArrayList<>();
+    @Inject
+    private transient Logger log;                                                               //SE USA EL TRANSIENT PARA Q EL LOG NO FORME PARTE DE LA SESSION DEL CARRO.
+
+    //public Carro() {this.items = new ArrayList<>(); }
+
+    @PostConstruct
+    public void inicializar(){
+        log.info("Inicializando el carro de compras.");
+        this.items = new ArrayList<>();                                                         //ESTA LÍNEA PUEDE IR EN EL CONTRUCTOR VACIO O ACÁ.
+    }
+
+    @PreDestroy
+    public void destruir(){
+      log.info("Destruyendo el carro de compras.");
     }
 
     public void addItemCarro(ItemCarro itemCarro) {
@@ -63,4 +79,5 @@ public class Carro implements Serializable {
                 .filter(itemCarro -> productoId.equals(Long.toString(itemCarro.getProducto().getId())))
                 .findAny();
     }
+
 }

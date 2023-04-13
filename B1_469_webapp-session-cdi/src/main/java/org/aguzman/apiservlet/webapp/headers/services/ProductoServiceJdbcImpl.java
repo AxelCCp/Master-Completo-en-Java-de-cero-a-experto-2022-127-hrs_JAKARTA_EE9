@@ -3,6 +3,9 @@ package org.aguzman.apiservlet.webapp.headers.services;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.aguzman.apiservlet.webapp.headers.configs.ProductoServicePrincipal;
+import org.aguzman.apiservlet.webapp.headers.configs.Service;
+import org.aguzman.apiservlet.webapp.headers.interceptors.Logging;
 import org.aguzman.apiservlet.webapp.headers.models.Categoria;
 import org.aguzman.apiservlet.webapp.headers.models.Producto;
 import org.aguzman.apiservlet.webapp.headers.repositories.Repository;
@@ -11,8 +14,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+//@Logging                  EL INTERCEPTOR TAMBN PUEDE IR A NIVEL DE CLASE E INTERCEPTA TODOS LOS METODOS DE LA CLASE.
+@Service
 @ApplicationScoped
-@Named("defecto")
+@ProductoServicePrincipal //ESTA ES OTRA MANERA DE DEFINIR UN SERVICIO PRINCIPAL.           //@Named("defecto")
 public class ProductoServiceJdbcImpl implements ProductoService{
 
     @Inject
@@ -22,6 +27,7 @@ public class ProductoServiceJdbcImpl implements ProductoService{
 
 
     @Override
+    @Logging                                                                                                        //SE APLICA INTERCEPTOR
     public List<Producto> listar() {
         try {
             return repositoryJdbc.listar();
@@ -31,6 +37,7 @@ public class ProductoServiceJdbcImpl implements ProductoService{
     }
 
     @Override
+    @Logging
     public Optional<Producto> porId(Long id) {
         try {
             return Optional.ofNullable(repositoryJdbc.porId(id));

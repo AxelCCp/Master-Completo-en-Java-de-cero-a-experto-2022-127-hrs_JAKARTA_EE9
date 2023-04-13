@@ -1,11 +1,13 @@
 package org.aguzman.apiservlet.webapp.headers.services;
 
+import jakarta.enterprise.inject.Alternative;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Arrays;
 import java.util.Optional;
 
+@Alternative        //PARA Q NO SEA EL COMPONENTE POR DEFECTO
 public class LoginServiceCookieImpl implements LoginService {
     @Override
     public Optional<String> getUsername(HttpServletRequest req) {
