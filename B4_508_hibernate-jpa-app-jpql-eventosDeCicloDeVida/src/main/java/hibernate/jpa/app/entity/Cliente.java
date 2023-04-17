@@ -2,6 +2,8 @@ package hibernate.jpa.app.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -55,11 +57,18 @@ public class Cliente {
 
     @Override
     public String toString() {
+
+        //PARA Q NO DÉ NULL POINTER EXCEPTION:
+        LocalDateTime creado = this.audit != null ? audit.getCreadoEn() : null;
+        LocalDateTime editado = this.audit != null ? audit.getEditadoEn() : null;
+
         return "Cliente{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", formaPago='" + formaPago + '\'' +
+                ", creadoEn=" + creado +
+                ", editadoEn=" + editado +
                 '}';
     }
 
@@ -70,4 +79,7 @@ public class Cliente {
     private String apellido;
     @Column(name="forma_pago")
     private String formaPago;
+    @Embedded
+    private Auditoria audit = new Auditoria();
+
 }
