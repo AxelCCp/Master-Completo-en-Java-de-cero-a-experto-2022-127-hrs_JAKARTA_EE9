@@ -85,7 +85,13 @@ public class Cliente {
         this.facturas = facturas;
     }
 
+    public ClienteDetalle getDetalle() {
+        return detalle;
+    }
 
+    public void setDetalle(ClienteDetalle detalle) {
+        this.detalle = detalle;
+    }
 
     @Override
     public String toString() {
@@ -103,8 +109,22 @@ public class Cliente {
                 ", editadoEn=" + editado + '\'' +
                 ", direcciones= " + direcciones + '\'' +
                 ", facturas= " + facturas + '\'' +
+                ", detalle= " + detalle + '\'' +
                 '}';
     }
+
+    public void addFactura(Factura factura){
+        this.facturas.add(factura);
+        factura.setCliente(this);
+    }
+
+
+    public  void removeFactura(Factura factura){
+        this.facturas.remove(factura);
+        factura.setCliente(null);
+    }
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -127,5 +147,9 @@ public class Cliente {
     //EL @JOINCOLUMN VA EN LA CLASE DUEÑA DE LA RELACION.
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
     private List<Factura>facturas;
+
+    // 519 al final del video -
+    @OneToOne  //@JoinColumn(name="detalle_id") //PARA DARLE OTRO NOMBRE.
+    private ClienteDetalle detalle;
 
 }

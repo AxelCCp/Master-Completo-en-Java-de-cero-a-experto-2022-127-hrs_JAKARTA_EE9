@@ -1,12 +1,11 @@
 package hibernate.jpa.app;
 
 import hibernate.jpa.app.entity.Cliente;
-import hibernate.jpa.app.entity.Factura;
+import hibernate.jpa.app.entity.ClienteDetalle;
 import hibernate.jpa.app.util.JpaUtil;
 import jakarta.persistence.EntityManager;
 
-public class A6_HibernateAsociacionesOneToManyBidireccional {
-
+public class B0_HibernateAsociacionesOneToOne_clienteEsDueñaDeLaRelacion {
     public static void main(String[] args) {
 
         EntityManager em = JpaUtil.getEntityManager();
@@ -14,21 +13,17 @@ public class A6_HibernateAsociacionesOneToManyBidireccional {
             em.getTransaction().begin();
             Cliente cliente = new Cliente("Cata", "Edu");
             cliente.setFormaPago("paypal");
-            Factura f1 = new Factura("Compras de supermercado", 5000L);
-            Factura f2 = new Factura("Compras de tecnología", 7000L);
-            cliente.addFactura(f1);
-            cliente.addFactura(f2);
-
             em.persist(cliente);
+
+            ClienteDetalle detalle = new ClienteDetalle(true, 5000L);
+            em.persist(detalle);
+            cliente.setDetalle(detalle);
             em.getTransaction().commit();
             System.out.println(cliente);
-        } catch(Exception e) {
+        } catch (Exception e) {
             em.getTransaction().rollback();
-            e.printStackTrace();
         } finally {
             em.close();
         }
-
     }
-
 }
