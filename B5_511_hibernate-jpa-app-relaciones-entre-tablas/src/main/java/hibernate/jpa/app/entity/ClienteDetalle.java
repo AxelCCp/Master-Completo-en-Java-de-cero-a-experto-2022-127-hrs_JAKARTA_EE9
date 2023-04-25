@@ -40,7 +40,7 @@ public class ClienteDetalle {
         this.puntosAcumulados = puntosAcumulados;
     }
 
-    /*
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -48,7 +48,7 @@ public class ClienteDetalle {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    */
+
 
     @Override
     public String toString() {
@@ -73,5 +73,10 @@ public class ClienteDetalle {
     @OneToOne
     private Cliente cliente;
     */
+
+
+    // CLASE 520 - RELACION BIDIRECCIONAL. SE DESCOMENTAN EL GET Y SET
+    @OneToOne     //@JoinColumn(name="detalle_id")
+    private Cliente cliente;
 
 }

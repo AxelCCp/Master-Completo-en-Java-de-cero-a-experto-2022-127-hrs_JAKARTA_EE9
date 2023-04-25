@@ -148,8 +148,15 @@ public class Cliente {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
     private List<Factura>facturas;
 
+    /*
     // 519 al final del video -
     @OneToOne  //@JoinColumn(name="detalle_id") //PARA DARLE OTRO NOMBRE.
     private ClienteDetalle detalle;
+    */
+
+    //520 - RELACION BIDIRECCIONAL
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")    //@JoinColumn(name="detalle_id")
+    private ClienteDetalle detalle;
+
 
 }

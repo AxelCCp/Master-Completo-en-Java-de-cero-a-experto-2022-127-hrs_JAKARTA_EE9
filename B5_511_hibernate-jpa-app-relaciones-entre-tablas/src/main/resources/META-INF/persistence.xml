@@ -6,6 +6,8 @@
         <class>hibernate.jpa.app.entity.Factura</class>
         <class>hibernate.jpa.app.entity.Direccion</class>
         <class>hibernate.jpa.app.entity.ClienteDetalle</class>
+        <class>hibernate.jpa.app.entity.Curso</class>
+        <class>hibernate.jpa.app.entity.Alumno</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/java-master-jakarta-2?serverTimezone=America/Mexico_City"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>

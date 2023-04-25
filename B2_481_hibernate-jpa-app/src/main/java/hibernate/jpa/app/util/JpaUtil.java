@@ -14,5 +14,7 @@ public class JpaUtil {
     public static EntityManager getEntityManager(){
         return entityManagerFactory.createEntityManager();
     }
+
+
     private static final EntityManagerFactory entityManagerFactory = buildEntityManagerFactory();
 }
