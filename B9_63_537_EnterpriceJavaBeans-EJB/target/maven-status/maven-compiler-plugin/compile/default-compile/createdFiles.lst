@@ -1,0 +1,7 @@
+jee\master\ejb\controller\A0_EjemploServlet.class
+jee\master\ejb\service\A1_EjbServiceLocal.class
+jee\master\ejb\Main.class
+jee\master\ejb\controller\A1_EjemploServletConLocal.class
+jee\master\ejb\service\A2_ServiceEjbLocal.class
+jee\master\ejb\model\Producto.class
+jee\master\ejb\service\A0_ServiceEjb.class
