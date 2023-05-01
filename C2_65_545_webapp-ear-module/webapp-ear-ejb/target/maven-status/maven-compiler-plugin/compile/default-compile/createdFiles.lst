@@ -1,0 +1,6 @@
+org\aguzman\webapp\ear\ejb\entity\Usuario.class
+org\aguzman\webapp\ear\repository\UsuarioRepository.class
+org\aguzman\webapp\ear\service\UsuarioService.class
+org\aguzman\webapp\ear\service\UsuarioServiceImpl.class
+org\aguzman\webapp\ear\repository\UsuarioRepositoryImpl.class
+org\aguzman\webapp\ear\ejb\ProducerResources.class
