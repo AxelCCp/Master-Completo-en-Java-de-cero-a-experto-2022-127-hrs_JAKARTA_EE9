@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<!--xmlns:h ASOCIA LOS COMPONENTES JSF AL HTML, ES PARA METERLE CÓDIGO JAVA ENTRE MEDIO-->
+
+<!--
+PARA JAVA 8:
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+
+PARA  VERSIONES MAYORES A JAVA 8:
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Formulario producto</title>  <!--FORMA 1-->
+</h:head>
+
+<h:body>
+
+    <h1><h:outputText value="Formulario producto"/></h1>  <!--FORMA 2-->
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Nombre" for="nombre"/>
+            <h:inputText id="nombre" value="#{producto.nombre}"/>                                        <!--"productos" viene de ProductoController desde el método con la anotación @Produces-->
+
+            <h:outputLabel value="Precio" for="precio"/>
+            <h:inputText id="precio" value="#{producto.precio}"/>
+
+            <h:outputLabel value="Sku" for="sku"/>
+            <h:inputText id="sku" value="#{producto.sku}"/>
+
+            <h:commandButton value="Crear" action="#{ProductoController.guardar}"/>                      <!-- ProductoController.guardar : LLAMA AL MÉTODO CREAR() EN  ProductoController --> <!--EL ACTION PUEDE CARGAR UNA VISTA O LLAMAR A UN MÉTODO DEL CONTROLADOR-->
+
+            <h:inputHidden value="#{producto.id}"/>                                                      <!--ESTE ES UN CAMPO ESCONDIDO Q SOLO SE USARÁ CUANDO SE QUIERA EDITAR EL PRODUCTO-->
+
+        </h:panelGrid>
+    </h:form>
+
+</h:body>
+
+</html>

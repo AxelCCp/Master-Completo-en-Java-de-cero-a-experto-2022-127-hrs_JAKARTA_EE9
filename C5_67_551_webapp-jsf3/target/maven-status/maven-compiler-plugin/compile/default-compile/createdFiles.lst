@@ -1,0 +1,7 @@
+jee\master\jsf\repository\CrudRepository.class
+jee\master\jsf\services\ProductoServiceImpl.class
+jee\master\jsf\services\ProductoService.class
+jee\master\jsf\repository\ProductoRepositoryImpl.class
+jee\master\jsf\configs\ProducerEntityManager.class
+jee\master\jsf\controllers\ProductoController.class
+jee\master\jsf\entities\Producto.class

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<!--xmlns:h ASOCIA LOS COMPONENTES JSF AL HTML, ES PARA METERLE CÓDIGO JAVA ENTRE MEDIO-->
+
+<!--
+PARA JAVA 8:
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+
+PARA  VERSIONES MAYORES A JAVA 8:
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>#{titulo}</title>                                               <!--FORMA 1-->
+</h:head>
+
+<h:body>
+
+    <h:panelGrid border="1">
+
+    <f:facet name="header">
+        <h:outputText value="#{titulo}"/>                                    <!--FORMA 2-->
+    </f:facet>
+
+    <h:form id="crearForm">
+        <!--TAMBN PUEDE SER h:commandLink-->
+        <h:commandButton value="Crear producto" action="form.xhtml" />     <!--EL ACTION PUEDE CARGAR UNA VISTA O LLAMAR A UN MÉTODO DEL CONTROLADOR, PARA Q FUNCIONE, DEBE ESTAR DENTRO DE ETIQUETAS H:FORM-->
+    </h:form>
+
+    <h:outputText value="No existen productos en la base de datos!" rendered="#{empty listado}"/>           <!--SI LA LISTA ESTÁ VACÍA, SE MUESTRA ESTE MENSAJE-->
+
+    <h:dataTable value="#{listado}" var="prod" rendered="#{not empty listado}">                             <!--SI LA LISTA NO ESTÁ VACÍA, SE MUESTRA LA LISTA-->
+
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Id"/>
+            </f:facet>
+            <h:outputText value="#{prod.id}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Nombre"/>
+            </f:facet>
+            <h:outputText value="#{prod.nombre}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Sku"/>
+            </f:facet>
+            <h:outputText value="#{prod.sku}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Precio"/>
+            </f:facet>
+            <h:outputText value="#{prod.precio}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Fecha"/>
+            </f:facet>
+            <h:outputText value="#{prod.fechaRegistro}"/>
+        </h:column>
+
+        <!--EDITAR CON POST-->
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Editar"/>
+            </f:facet>
+            <h:form id="editarForm">
+                <h:commandLink value="editar" action="#{productoController.editar(prod.id)}"/>
+            </h:form>
+        </h:column>
+
+        <!--EDITAR CON GET-->
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Editar2"/>
+            </f:facet>
+            <h:form id="editarForm2">
+                <h:link value="editar2" outcome="form">
+                    <f:param name="id" value="${prod.id}"/>
+                </h:link>
+            </h:form>
+        </h:column>
+
+        <!--ELIMINAR-->
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Eliminar"/>
+            </f:facet>
+            <h:form id="eliminarForm">
+                <h:commandLink value="eliminar" action="#{productoController.eliminar(prod.id)}" onclick="return confirm('Esta seguro q desea eliminar?')"/>
+            </h:form>
+        </h:column>
+
+
+    </h:dataTable>
+
+    </h:panelGrid>
+
+</h:body>
+
+</html>
