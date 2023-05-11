@@ -22,11 +22,15 @@ package jee.master.jsf.controllers;
 //10 - A ESTA NUEVA VARIABLE SE LE ASIGNAN EL GETTER Y SETTER, PARA PODER ASIGNAR EL ID AUTOMÁTICAMENTE.
 //11 - SI EL PRODUCTO YA TIENE ID.
 
+//560
+//12 - SE CREA EL COMPONENETE CDI CON LAS CATEGORIAS, DEL TIPO DEL REQUEST. PARA POBLAR LA LISTA DESPLEGABLE.
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Model;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jee.master.jsf.entities.Categoria;
 import jee.master.jsf.entities.Producto;
 import jee.master.jsf.services.ProductoService;
 
@@ -95,5 +99,13 @@ public class ProductoController {
         service.eliminar(id);
         return "index.xhtml?faces-redirect=true";
     }
+
+
+    @Produces
+    @Model
+    public List<Categoria>categorias(){
+        return  service.listarCategorias();
+    }
+
 
 }

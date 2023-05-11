@@ -2,6 +2,7 @@ package jee.master.jsf.services;
 
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import jee.master.jsf.entities.Categoria;
 import jee.master.jsf.entities.Producto;
 import jee.master.jsf.repository.CrudRepository;
 
@@ -36,7 +37,19 @@ public class ProductoServiceImpl implements ProductoService {
         repository.eliminar(id);
     }
 
+    @Override
+    public List<Categoria> listarCategorias() {
+        return categoriaRepository.listar();
+    }
+
+    @Override
+    public Optional<Categoria> porIdCategoria(Long id) {
+        return Optional.ofNullable(categoriaRepository.porId(id));
+    }
+
 
     @Inject
     private CrudRepository<Producto> repository;
+    @Inject
+    private CrudRepository<Categoria> categoriaRepository;
 }

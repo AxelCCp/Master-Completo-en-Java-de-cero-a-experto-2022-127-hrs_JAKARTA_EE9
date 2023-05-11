@@ -1,5 +1,8 @@
 jee\master\jsf\repository\CrudRepository.class
 jee\master\jsf\services\ProductoServiceImpl.class
+jee\master\jsf\converters\CategoriaConverter.class
+jee\master\jsf\repository\CategoriaRepositoryImpl.class
+jee\master\jsf\entities\Categoria.class
 jee\master\jsf\services\ProductoService.class
 jee\master\jsf\repository\ProductoRepositoryImpl.class
 jee\master\jsf\configs\ProducerEntityManager.class

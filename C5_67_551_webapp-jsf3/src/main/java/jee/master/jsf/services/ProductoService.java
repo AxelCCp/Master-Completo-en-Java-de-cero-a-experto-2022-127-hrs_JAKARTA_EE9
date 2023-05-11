@@ -1,6 +1,7 @@
 package jee.master.jsf.services;
 
 import jakarta.ejb.Local;
+import jee.master.jsf.entities.Categoria;
 import jee.master.jsf.entities.Producto;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface ProductoService {
     Optional<Producto> porId(Long id);
     void guardar(Producto producto);
     void eliminar(Long id);
+    List<Categoria> listarCategorias();
+    Optional<Categoria> porIdCategoria(Long id);
+
 }
