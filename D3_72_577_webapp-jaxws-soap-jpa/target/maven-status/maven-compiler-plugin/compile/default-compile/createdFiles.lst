@@ -1,0 +1,6 @@
+webapp\jaxws\soap\models\dao\CursoDao.class
+webapp\jaxws\soap\models\services\CursoServicioWsImpl.class
+webapp\jaxws\soap\models\dao\CursoRepository.class
+webapp\jaxws\soap\models\Curso.class
+webapp\jaxws\soap\producers\ProducerEntityManager.class
+webapp\jaxws\soap\models\services\CursoServicioWs.class
